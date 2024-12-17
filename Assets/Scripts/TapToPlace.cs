@@ -75,7 +75,7 @@ public class TapToPlace : MonoBehaviour
                     {
                         Pose hitPose = hitResults[0].pose;
                         //debugText.text = $"hit! position in 3D world X:{hitPose.position.x}, Y:{hitPose.position.y}";
-                        debugText.text = "Portal Spawned~";
+                        debugText.text = "Portal Spawned!";
                         // 여기서 가져오는 Pose.position은 3D 월드 공간내의 좌표이다 .
 
                         // 요기서 포털 유무를 체크하면 포털이 생성되어도 평면감지는 계속해서 된다
@@ -112,6 +112,17 @@ public class TapToPlace : MonoBehaviour
                 touchPoint.transform.position = touch.position;
 
             }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                arPlane = FindObjectOfType<ARPlane>();
+                Instantiate(portalPrefab, arPlane.transform.position, arPlane.transform.rotation);
+                arPlaneManager.SetTrackablesActive(false);
+                // AR Plane Manager 컴포넌트를 비활성화 
+                arPlaneManager.enabled = false;
+                debugText.text = "Portal Spawned!";
+            }
+
         }
     }
 
