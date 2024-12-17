@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 85097727426779472}
   - component: {fileID: 85097727426779473}
   - component: {fileID: 85097727426779474}
-  - component: {fileID: 1850878215}
   m_Layer: 5
   m_Name: FPS Overlay UI
   m_TagString: Untagged
@@ -34,7 +33,6 @@ RectTransform:
   m_Children:
   - {fileID: 1789680787311516152}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -58,7 +56,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
@@ -102,19 +102,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1850878215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85097727426779475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 450716ccd742742d2941d9064207d6d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateInteval: 0.5
 --- !u!1 &4794220663363146893
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +133,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1789680787311516152}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -282,7 +268,6 @@ RectTransform:
   m_Children:
   - {fileID: 1239516290927130768}
   m_Father: {fileID: 85097727426779487}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.836}
   m_AnchorMax: {x: 1, y: 1}
