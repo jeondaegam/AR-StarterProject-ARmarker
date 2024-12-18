@@ -17,7 +17,6 @@ public class TapToPlace : MonoBehaviour
     public Image touchPoint;
 
     public ARRaycastManager arRaycastManager;
-    //public List<GameObject> aotList;
     private List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
 
     // 포털 인스턴싱 하기
@@ -57,42 +56,32 @@ public class TapToPlace : MonoBehaviour
                     touchPoint.gameObject.SetActive(true);
                 }
 
-                //Debug.Log("touch!");
-                //DisplayTouchPoint();
                 // 첫 번째 터치 정보를 가져옴 
                 Touch touch = Input.GetTouch(0);
                 Vector2 touchPosition = touch.position;
 
                 if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
                 {
-
                     // Ray를 쏜다 
                     bool hitDetected = arRaycastManager.Raycast(touchPosition, hitResults,
                         UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon);
 
-                    // 
                     if (hitDetected)
                     {
+                        // Raycast 결과에서 첫 번째 감지된 평면 정보 가져오기
                         Pose hitPose = hitResults[0].pose;
-                        //debugText.text = $"hit! position in 3D world X:{hitPose.position.x}, Y:{hitPose.position.y}";
-                        debugText.text = "Portal Spawned!";
-                        // 여기서 가져오는 Pose.position은 3D 월드 공간내의 좌표이다 .
 
-                        // 요기서 포털 유무를 체크하면 포털이 생성되어도 평면감지는 계속해서 된다
-                        // 그러므로 포털이 생성된 후에도 다른 평면을 계속해서 감지가 가능하지만
-                        // 이미 포털이 생성된 평면 위에 또 평면이 생성될 수 있음 
-                        //if (!isPortalSpawned)
-                        //{
-                        arPlane = FindObjectOfType<ARPlane>();
-                        Instantiate(portalPrefab, arPlane.transform.position, arPlane.transform.rotation);
+                        // 포털 생성
+                        Instantiate(portalPrefab, hitPose.position, hitPose.rotation);
                         isPortalSpawned = true;
 
-                        //포털이 생성 되었다면
                         // 기존에 감지된 다른 평면을 비활성화 
                         arPlaneManager.SetTrackablesActive(false);
+
                         // AR Plane Manager 컴포넌트를 비활성화 
                         arPlaneManager.enabled = false;
-                        //}
+
+                        debugText.text = "Spawn Portal!";
                     }
                     else
                     {
